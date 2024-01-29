@@ -12,7 +12,7 @@ public interface MemberMapper {
 	void insertUser(ReqMemberInsert insert);
 	
 	/*이메일 체크*/
-	ResEmailNameChk emailChk(ReqMemberInsert insert );
+	ResEmailNameChk emailChk(ReqMemberInsert insert); 
 	
 	/*회원명*/
 	ResEmailNameChk nameChk(ReqMemberInsert insert);

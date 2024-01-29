@@ -1,9 +1,11 @@
 package com.example.admin.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.admin.dto.request.member.ReqMemberInsert;
 import com.example.admin.dto.response.member.ResLoginUser;
@@ -11,6 +13,7 @@ import com.example.admin.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -28,7 +31,7 @@ public class MemberController {
 		@PostMapping("")
 		public String join( ReqMemberInsert insert) {
 			memberService.userInsert(insert);
-			return "redirect:/member";
+			return "redirect:/member/login";
 		}
 		
 		@GetMapping("/login")
@@ -46,5 +49,12 @@ public class MemberController {
 	        return "redirect:/banner";
 		}
 		
-		 
+		 @DeleteMapping("/logout")
+		 @ResponseBody
+		 public void logoutUser(HttpServletRequest httpServletRequest) {
+			 HttpSession session = httpServletRequest.getSession(false);
+			 if(session != null) {
+				session.invalidate();
+			 }
+		 }
 }
