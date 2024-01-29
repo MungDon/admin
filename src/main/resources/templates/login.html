@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+	<link rel="stylesheet" href="/css/reset1.css">
+	<link rel="stylesheet" href="/css/reset2.css">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+		<header th:replace="header :: header"></header>
+	<div class="main_container">
+		<div class="login_con">
+			<div class="login_box">
+				<form class="login_form" action="/member/login" method="post">
+					이메일<input type="text" name="email"><br>
+					비밀번호<input type="text" name="password">
+					<input type="submit" value="로그인">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

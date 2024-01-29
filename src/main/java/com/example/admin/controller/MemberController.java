@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.admin.dto.request.member.ReqMemberInsert;
+import com.example.admin.dto.response.member.ResLoginUser;
 import com.example.admin.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -23,8 +26,25 @@ public class MemberController {
 		}
 		/*회원정보 저장*/
 		@PostMapping("")
-		public String join(ReqMemberInsert insert) {
+		public String join( ReqMemberInsert insert) {
 			memberService.userInsert(insert);
 			return "redirect:/member";
 		}
+		
+		@GetMapping("/login")
+		public String loginForm() { 
+			return "login";
+		}
+		
+		@PostMapping("/login")
+		public String loginUser(ReqMemberInsert loginUser,HttpServletRequest httpServletRequest) {
+			ResLoginUser loginId = memberService.loginUser(loginUser);
+			httpServletRequest.getSession().invalidate();
+	        HttpSession session = httpServletRequest.getSession(true); 
+	        session.setAttribute("member_sid",loginId.getMember_sid());
+	        session.setMaxInactiveInterval(1800);//세션 30분동안 유지
+	        return "redirect:/banner";
+		}
+		
+		 
 }
