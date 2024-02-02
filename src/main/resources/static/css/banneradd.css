@@ -1,0 +1,87 @@
+@charset "UTF-8";
+.content_con{
+	width: 100%;
+	display: flex;
+}
+h2{
+	font-weight: bold;
+	padding-bottom: 10px;
+	border-bottom: 3px solid black;
+	margin-top: 30px;
+	font-size: 30px;
+}
+.banner_add{
+	width: 100%;
+	height: auto;
+	display: flex;
+	margin-top: 50px;
+}
+tr{
+	border: 2px solid gray;
+	height: 40px;
+}
+td{
+	border-right:2px solid gray;
+}
+.title{
+	color: aliceblue;
+	background-color: black;
+	font-weight: bold;
+	padding-left: 8%;
+	width: 200px;
+	border-right:2px solid gray;
+}
+.content{
+	width:800px;
+}
+select{
+	
+	width:15% ;
+	height: 40px;
+}
+input[type=file]{
+	padding-top: 8px;
+}
+input[type=text], input[type=file],input[type=url]{
+	padding-left: 10px;
+	width: 800px;
+	height: 40px;
+}
+input[type=date]{
+	padding-left: 5px;
+	width: 150px;
+	height: 40px;
+}
+.btns{
+	margin-top: 50px;
+	display: flex;
+	flex-direction: row-reverse;
+	width: 100%;
+}
+button{
+	font-size: 18px;
+	font-weight: bold;
+	background-color: black;
+	border-radius: 10px;
+	width: 80px;
+	height: 40px;
+	border: 1px solid black;
+}
+button>a{
+	color: aliceblue;
+}
+input[type=submit]{
+	font-size: 18px;
+	font-weight: bold;
+	background-color: black;
+	color: aliceblue;
+	border-radius: 10px;
+	height: 40px;
+	width: 80px;
+}
+.list_btn{
+	width: 90%
+}
+.back_btn{
+	width: 10%;
+}

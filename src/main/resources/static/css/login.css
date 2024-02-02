@@ -12,8 +12,8 @@
 	justify-content: center;
 }
 .login_box{
-	border: 3px solid rgb(216, 216, 216);
-	border-radius: 10px;
+	border: 10px solid rgb(216, 216, 216);
+	border-radius: 85px;
 	border-style:double;
 	display: flex;
 	flex-direction: column;
@@ -50,11 +50,28 @@
 	color: aliceblue;
 	font-size: 25px;
 	font-weight: bolder;
-	border-radius: 5px;
+	border-radius: 10px;
 	border: none;
 	background-color: rgb(217, 217, 255);
 	margin-top:30px ;
 	height: 50px;
 	width: 380px;
-	
+}
+.join_a{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:center; 
+	height: 50px;
+	width: 380px;
+	border:none;
+	background-color: rgb(217,217,255);
+	border-radius: 10px;
+	margin-top:20px;
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+}
+a{
+	color: aliceblue;
 }

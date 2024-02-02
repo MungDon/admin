@@ -15,15 +15,20 @@
 		#{title},
 		#{main_content},
 		#{sub_content},
-		#{exposure_yn},
+		'Y',
 		'N',
 		now(),
 		now()
 	)
-	
-	
-
 </insert>
+<!-- 배너관리 목록보기 -->
+<select id="bannerList"  resultType="ResBannerList">
+	SELECT banner_sid,title,main_content,sub_content,start_date,end_date,exposure_yn,delete_yn,created_yn
+	FROM	tb_banner
+	WHERE
+				delete_yn = 'N'
+</select>
+
 
 
 </mapper>

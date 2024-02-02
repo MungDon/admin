@@ -10,7 +10,14 @@
 </head>
 <body>
 <header class="header" th:fragment="header">
-		<h1>멍돈소프트</h1>
+	<input type="hidden" th:value="${session.member_sid}">
+	<div class="login_box" th:if="${session.member_sid != null}">
+                <span>통합관리자님, 환영합니다.</span><br><!--회원 명 명시부분에 회원데이터 받아와서 그 회원이름 뜨게하기-->
+                <a href="#" class="logout_btn">로그아웃</a>
+                <a href="#" class="my_info">내 정보</a>
+                </div>
+		<img th:src="@{/img/제목 추가 (1).png}">
+		
 	</header>
 </body>
 </html>

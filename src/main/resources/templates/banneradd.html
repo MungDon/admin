@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="/css/aside.css">
+	<link rel="stylesheet" href="/css/reset1.css">
+	<link rel="stylesheet" href="/css/reset2.css">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/banneradd.css">
+</head>
+
+<body>
+	<header th:replace="~{header :: header}"></header>
+	<div class="content_con" >
+		<aside th:replace="~{aside :: aside}"></aside>
+		<form class="banner_add_form">
+			<h2>배너관리</h2>
+			<table class="banner_add" >
+				<tr>
+					<td class="title">제목</td>
+					<td class="content"><input type="text" name="title"></tdclass="title">
+				</tr>
+				<tr>
+					<td class="title">메인문구</td>
+					<td class="content"><input type="text" name="main_content"></td>
+				</tr>
+				<tr>
+					<td class="title">서브문구</td>
+					<td class="content"><input type="text" name="sub_content"></td>
+				</tr>
+				<tr>
+					<td class="title">이미지등록</td>
+					<td class="content"><input type="file" name="img"></td>
+				</tr>
+				<tr>
+					<td class="title">노출 기간</td>
+					<td class="content"><input type="date" name="date">~<input type="date" name="date"></td>
+				</tr>
+				<tr>
+					<td class="title">링크</td>
+					<td class="content"><input type="url" name="url"></td>
+				</tr>
+				<tr>
+					<td class="title">상태</td>
+					<td class="content">
+						<select name="exposure_yn">
+							<option value="y">노출</option>
+							<option value="n">비노출</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<div class="btns">
+			<input type="submit"  value="등록">
+			<div class="back_btn"><button type="button" style="background-color: aliceblue;"><a href="/banner" style="color: black;">취소</a></button></div>
+			<div class="list_btn"><button type="button" ><a href="/banner" >목록</a></button></div>
+			</div>
+		</form>
+	</div>
+	
+</body>
+<script>
+	/*메뉴바 기능*/
+	$(function () {
+		$(".menu>li").mouseover(function () {
+			$(this).find(".sub").stop().slideDown(1000);
+		});
+		$(".menu>li").mouseleave(function () {
+			$(this).find(".sub").stop().slideUp(1000);
+		});
+	});</script>
+
+</html>
