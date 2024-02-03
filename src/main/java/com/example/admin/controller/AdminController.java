@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.admin.dto.request.member.ReqMemberInsert;
-import com.example.admin.dto.response.member.ResLoginUser;
-import com.example.admin.service.MemberService;
+import com.example.admin.dto.request.admin.ReqAdminInsert;
+import com.example.admin.dto.response.admin.ResLoginAdmin;
+import com.example.admin.service.AdminService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -17,41 +17,42 @@ import jakarta.websocket.Session;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/admin")
 @RequiredArgsConstructor
-public class MemberController {
+public class AdminController {
 	
-		private final MemberService memberService;
+		private final AdminService adminService;
 		/*회원가입 폼*/
 		@GetMapping("")
 		public String joinForm() {
 			return "join";
 		}
-		/*회원정보 저장*/
+		/*관리자정보 저장*/
 		@PostMapping("")
-		public String join( ReqMemberInsert insert) {
-			memberService.userInsert(insert);
-			return "redirect:/member/login";
+		public String join( ReqAdminInsert insert) {
+			adminService.adminInsert(insert);
+			return "redirect:/admin/login";
 		}
-		
+		/*관리자 로그인 폼*/
 		@GetMapping("/login")
 		public String loginForm() { 
 			return "login";
 		}
-		
+		/*관리자 로그인*/
 		@PostMapping("/login")
-		public String loginUser(ReqMemberInsert loginUser,HttpServletRequest httpServletRequest) {
-			ResLoginUser loginId = memberService.loginUser(loginUser);
+		public String loginAdmin(ReqAdminInsert loginAdmin,HttpServletRequest httpServletRequest) {
+			ResLoginAdmin loginId = adminService.loginAdmin(loginAdmin);
 			httpServletRequest.getSession().invalidate();
 	        HttpSession session = httpServletRequest.getSession(true); 
-	        session.setAttribute("member_sid",loginId.getMember_sid());
+	        session.setAttribute("admin_sid",loginId.getAdmin_sid());
+	        session.setAttribute("admin_name", loginId.getAdmin_name());
 	        session.setMaxInactiveInterval(1800);//세션 30분동안 유지
 	        return "redirect:/banner";
 		}
 		
 		 @DeleteMapping("/logout")
 		 @ResponseBody
-		 public void logoutUser(HttpServletRequest httpServletRequest) {
+		 public void logoutAdmin(HttpServletRequest httpServletRequest) {
 			 HttpSession session = httpServletRequest.getSession(false);
 			 if(session != null) {
 				session.invalidate();

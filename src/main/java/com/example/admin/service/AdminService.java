@@ -3,40 +3,40 @@ package com.example.admin.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.admin.dto.request.member.ReqMemberInsert;
-import com.example.admin.dto.response.member.ResEmailNameChk;
-import com.example.admin.dto.response.member.ResLoginUser;
-import com.example.admin.mapper.MemberMapper;
+import com.example.admin.dto.request.admin.ReqAdminInsert;
+import com.example.admin.dto.response.admin.ResEmailNameChk;
+import com.example.admin.dto.response.admin.ResLoginAdmin;
+import com.example.admin.mapper.AdminMapper;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.throwsSpec_return;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class AdminService {
 
-	private final MemberMapper memberMapper;
+	private final AdminMapper adminMapper;
 
 	/* 회원가입 */
 	@Transactional
-	public void userInsert(ReqMemberInsert insert) {
-		ResEmailNameChk emailChk = memberMapper.emailChk(insert);
-		ResEmailNameChk nameChk = memberMapper.nameChk(insert);
+	public void adminInsert(ReqAdminInsert insert) {
+		ResEmailNameChk emailChk = adminMapper.emailChk(insert);
+		ResEmailNameChk nameChk = adminMapper.nameChk(insert);
 		try {
 			if (emailChk != null) {
 				throw new Exception("이메일 중복되었습니다!");
 			}
 			if(nameChk != null) {
-				 throw new Exception("회원명이 중복되었습니다!");
+				 throw new Exception("관리자명이 중복되었습니다!");
 			}
-			memberMapper.insertUser(insert);
+			adminMapper.insertAdmin(insert);
 		} catch (Exception e) {
 			System.out.println("경고 :" + e.getMessage());
 		}
 	}
 	@Transactional
-	public ResLoginUser loginUser(ReqMemberInsert insert) {
-		ResLoginUser login = memberMapper.loginUser(insert);
+	public ResLoginAdmin loginAdmin(ReqAdminInsert insert) {
+		ResLoginAdmin login = adminMapper.loginAdmin(insert);
 		try {
 			if(login == null) {
 			throw new Exception("로그인 정보가 일치하지 않습니다!");

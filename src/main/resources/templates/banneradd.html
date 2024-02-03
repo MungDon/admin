@@ -18,7 +18,7 @@
 	<header th:replace="~{header :: header}"></header>
 	<div class="content_con" >
 		<aside th:replace="~{aside :: aside}"></aside>
-		<form class="banner_add_form">
+		<form class="banner_add_form" action="/banner/add" method="post">
 			<h2>배너관리</h2>
 			<table class="banner_add" >
 				<tr>
@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td class="title">노출 기간</td>
-					<td class="content"><input type="date" name="date">~<input type="date" name="date"></td>
+					<td class="content"><input type="date" name="start_date">~<input type="date" name="end_date"></td>
 				</tr>
 				<tr>
 					<td class="title">링크</td>

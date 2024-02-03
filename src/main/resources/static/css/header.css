@@ -9,11 +9,11 @@
 	color: aliceblue;
 	border-bottom: 1px solid #e2e2e2;
 }
-.login_box>a{
+.info_box>a{
 	color: #e2e2e2;
 	margin:0 20px 0px 20px;
 }
-.login_box{
+.info_box{
 	width:100% ;
 		display: flex;
 	justify-content: flex-end;

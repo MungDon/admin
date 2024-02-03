@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.admin.dto.request.banner.ReqBannerInsert;
+import com.example.admin.dto.response.banner.ResBanner;
 import com.example.admin.dto.response.banner.ResBannerList;
 import com.example.admin.service.BannerService;
 
@@ -25,8 +26,7 @@ public class BannerController {
 	/*배너관리 목록페이지*/
 	@GetMapping("")
 	public String bannerList(Model model){
-		List<ResBannerList> bannerList = bannerService.bannerLists();
-		model.addAttribute("list", bannerList);
+		ResBannerList list = bannerService.bannerLists();
 		return "bannerlist";
 	}
 	/*배너관리등록 폼*/
@@ -40,7 +40,7 @@ public class BannerController {
 	public String insertBanner(ReqBannerInsert insert, HttpServletRequest httpServletRequest) {
 		HttpSession session= httpServletRequest.getSession(false);
 		  if(session == null) {
-			  return "redirect;/member/login";
+			  return "redirect:/admin/login";
 		  }
 		bannerService.insertBanner(insert);
 		return "redirect:/banner";

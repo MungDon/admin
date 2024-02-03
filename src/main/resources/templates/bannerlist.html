@@ -10,13 +10,14 @@
 	<link rel="stylesheet" href="/css/reset1.css">
 	<link rel="stylesheet" href="/css/reset2.css">
 	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/bannerlist.css">
 </head>
 <body>
 		<header th:replace="~{header :: header}"></header>
 		<div class="list_continer">
 		<aside th:replace="~{aside :: aside}"></aside>
 		<table class="banner_list">
-			<thead>
+			<thead th:if="${!#lists.isEmpty(list)}">
 			<tr>
 				<th scope="col">No.</th>
 				<th scope="col">영역</th>
@@ -30,10 +31,20 @@
 			</thead>
 			<tbody>
 				<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-					
+					<td th:text="${list.banner_sid} "></td>
+					<td class="area">메인 배너</td>
+					<td><a href="/banner/detail/${list.banner_sid}" th:text="${list.title}"></a></td>
+					<td th:text="${list.exposure_yn}"></td>
+					<td th:text="${#temporals.formet(list.created_date,'yyyy-MM-dd')}"></td>
+					<td th:text="${list.writer}"></td>
+					<td th:text="|${list.start_date}~${list.end_date}|"></td>
 				</tr>
 			</tbody>
+			
 		</table>
+		<tr  th:if="${#lists.isEmpty(list)}">
+					<h1>목록이 존재하지 않습니다!</h1>
+				</tr>
 		</div>
 		
 </body>

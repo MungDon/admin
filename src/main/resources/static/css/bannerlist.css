@@ -1,1 +1,13 @@
 @charset "UTF-8";
+.list_continer{
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+.banner_list{
+	width: 300px;
+	border: 1px solid red;
+}
+h1{
+	border: 1px solid red;
+}

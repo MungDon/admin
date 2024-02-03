@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.banner">
+<mapper namespace="com.example.admin.mapper.BannerMapper">
 <!-- 게시글 저장 -->
-<insert id ="save" parameterType="ReqBannerInsert"	useGeneratedKeys="true" keyColumn="banner_sid" keyProperty="banner_sid">
+<insert id ="insertBanner" parameterType="ReqBannerInsert"	useGeneratedKeys="true" keyColumn="banner_sid" keyProperty="banner_sid">
 	INSERT		INTO		tb_banner(
 		title,
 		main_content,
 		sub_content,
 		exposure_yn,
+		start_date,
+		end_date,
 		delete_yn,
 		created_date,
 		modified_date
@@ -16,17 +18,21 @@
 		#{main_content},
 		#{sub_content},
 		'Y',
+		#{start_date},
+		#{end_date},
 		'N',
 		now(),
 		now()
 	)
 </insert>
 <!-- 배너관리 목록보기 -->
-<select id="bannerList"  resultType="ResBannerList">
-	SELECT banner_sid,title,main_content,sub_content,start_date,end_date,exposure_yn,delete_yn,created_yn
-	FROM	tb_banner
-	WHERE
-				delete_yn = 'N'
+<select id="bannerList"  resultType="ResBanner">
+	SELECT					 TB.*,
+								 TA.admin_name 	AS 	writer
+	FROM 					 tb_banner	  	  	 	AS 	TB
+	LEFT OUTER JOIN	 tb_admin 				AS 	TA 		ON 		TB.admin_sid = TA.admin_sid 
+	 WHERE
+				TB.delete_yn = 'N'
 </select>
 
 

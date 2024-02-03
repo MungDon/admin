@@ -10,9 +10,10 @@
 </head>
 <body>
 <header class="header" th:fragment="header">
-	<input type="hidden" th:value="${session.member_sid}">
-	<div class="login_box" th:if="${session.member_sid != null}">
-                <span>통합관리자님, 환영합니다.</span><br><!--회원 명 명시부분에 회원데이터 받아와서 그 회원이름 뜨게하기-->
+	<input type="hidden" th:value="${session.admin_sid}">
+	<input type="hidden" th:value="${session.admin_name}">
+	<div class="info_box" th:if="${session.admin_sid != null}">
+                <span th:text="|${session.admin_name}님, 환영합니다.|"></span><br><!--회원 명 명시부분에 회원데이터 받아와서 그 회원이름 뜨게하기-->
                 <a href="#" class="logout_btn">로그아웃</a>
                 <a href="#" class="my_info">내 정보</a>
                 </div>
