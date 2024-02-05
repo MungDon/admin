@@ -41,12 +41,10 @@ public class AdminController {
 		/*관리자 로그인*/
 		@PostMapping("/login")
 		public String loginAdmin(ReqAdminInsert loginAdmin,HttpServletRequest httpServletRequest) {
-			ResLoginAdmin loginId = adminService.loginAdmin(loginAdmin);
-			httpServletRequest.getSession().invalidate();
-	        HttpSession session = httpServletRequest.getSession(true); 
-	        session.setAttribute("admin_sid",loginId.getAdmin_sid());
-	        session.setAttribute("admin_name", loginId.getAdmin_name());
-	        session.setMaxInactiveInterval(1800);//세션 30분동안 유지
+			ResLoginAdmin login = adminService.loginAdmin(loginAdmin);
+			HttpSession session = httpServletRequest.getSession(true);
+			session.setAttribute("admin_sid" , login.getAdmin_sid());
+			session.setAttribute("admin_name", login.getAdmin_name());
 	        return "redirect:/banner";
 		}
 		

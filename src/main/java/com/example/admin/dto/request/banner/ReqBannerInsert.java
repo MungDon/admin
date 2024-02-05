@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class ReqBannerInsert {
 		private Long banner_sid; //배너관리 게시글 pk
+		private Long admin_sid; //배너관리 게시글 pk
 		private String title; //제목
 		private String main_content; //메인문구
 		private String sub_content; //서브문구

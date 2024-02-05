@@ -20,7 +20,6 @@ public class BannerService {
 		
 		@Transactional
 		public void insertBanner(ReqBannerInsert insert) {
-			System.out.println(insert);
 			bannerMapper.insertBanner(insert);
 		}
 		

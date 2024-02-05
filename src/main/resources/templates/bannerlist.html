@@ -17,7 +17,7 @@
 		<div class="list_continer">
 		<aside th:replace="~{aside :: aside}"></aside>
 		<table class="banner_list">
-			<thead th:if="${!#lists.isEmpty(list)}">
+			<thead th:if="${!#lists.isEmpty(banner.list)}">
 			<tr>
 				<th scope="col">No.</th>
 				<th scope="col">영역</th>
@@ -26,23 +26,21 @@
 				<th scope="col">등록일</th>
 				<th scope="col">관리자</th>
 				<th scope="col">노출 기간</th>
-				<th scope="col">노출 순서</th>
 			</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${!#lists.isEmpty(list)}" th:each="list:${list}">
-					<td th:text="${list.banner_sid} "></td>
+				<tr th:if="${!#lists.isEmpty(banner.list)}" th:each="item : ${banner.list}">
+					<td th:text="${item.banner_sid} "></td>
 					<td class="area">메인 배너</td>
-					<td><a href="/banner/detail/${list.banner_sid}" th:text="${list.title}"></a></td>
-					<td th:text="${list.exposure_yn}"></td>
-					<td th:text="${#temporals.formet(list.created_date,'yyyy-MM-dd')}"></td>
-					<td th:text="${list.writer}"></td>
-					<td th:text="|${list.start_date}~${list.end_date}|"></td>
+					<td><a href="/banner/detail/${item.banner_sid}" th:text="${item.title}"></a></td>
+					<td  th:text="${item.exposure_yn}"></td>
+					<td th:text="${#temporals.format(item.created_date, 'yyyy-MM-dd')}"></td>
+					<td th:text="${item.writer}"></td>
+					<td th:text="|${item.start_date}~${item.end_date}|"></td>
 				</tr>
 			</tbody>
-			
 		</table>
-		<tr  th:if="${#lists.isEmpty(list)}">
+		<tr  th:if="${#lists.isEmpty(banner.list)}">
 					<h1>목록이 존재하지 않습니다!</h1>
 				</tr>
 		</div>

@@ -40,6 +40,5 @@
 	FROM		tb_admin
 	WHERE
 					email = #{email}
-	AND			password = #{password}
 </select>
 </mapper>

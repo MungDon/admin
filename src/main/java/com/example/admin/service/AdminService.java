@@ -36,14 +36,19 @@ public class AdminService {
 	}
 	@Transactional
 	public ResLoginAdmin loginAdmin(ReqAdminInsert insert) {
-		ResLoginAdmin login = adminMapper.loginAdmin(insert);
-		try {
-			if(login == null) {
-			throw new Exception("로그인 정보가 일치하지 않습니다!");
-		}
-		} catch (Exception e) {
-			System.out.println("경고! : " + e.getMessage());
-		}
-		return login;
+		ResLoginAdmin loginChk = adminMapper.loginAdmin(insert);
+			try {
+				if(loginChk == null) {
+				throw new Exception("이메일정보를 확인해주세요");
+			}
+				if(!loginChk.getPassword().equals(insert.getPassword())){
+					throw new Exception("비밀번호정보를 확인해주세요");
+				}
+			}
+			catch(Exception e){
+				System.out.println("경고 :" + e.getMessage());
+				e.printStackTrace();
+			}
+		return loginChk;
 	}
 }

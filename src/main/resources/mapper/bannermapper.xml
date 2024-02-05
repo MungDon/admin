@@ -10,6 +10,7 @@
 		exposure_yn,
 		start_date,
 		end_date,
+		admin_sid,
 		delete_yn,
 		created_date,
 		modified_date
@@ -20,6 +21,7 @@
 		'Y',
 		#{start_date},
 		#{end_date},
+		#{admin_sid},
 		'N',
 		now(),
 		now()
@@ -28,8 +30,8 @@
 <!-- 배너관리 목록보기 -->
 <select id="bannerList"  resultType="ResBanner">
 	SELECT					 TB.*,
-								 TA.admin_name 	AS 	writer
-	FROM 					 tb_banner	  	  	 	AS 	TB
+								 TA.admin_name 	AS	 writer
+	FROM 					 tb_banner	  	  	 AS 	TB
 	LEFT OUTER JOIN	 tb_admin 				AS 	TA 		ON 		TB.admin_sid = TA.admin_sid 
 	 WHERE
 				TB.delete_yn = 'N'
